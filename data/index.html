@@ -1,0 +1,47 @@
+<html>
+    <h1 style="text-align: center;">SaganSat ENIAC - Configuracoes</h1>
+
+    <h2 style="text-align: left;">Leitura do MPU6050:</h2>
+    <br>
+ 
+
+        <div id="tabelaSensores">-</div>
+        
+
+
+    <button onclick="atualiza_valores()">botao</button>
+</html>
+
+<script>
+
+console.log(window.location.pathname);
+console.log("To vivo!");
+timeout();
+function timeout() {
+    setTimeout(function () {
+        // Do Something Here
+        // Then recall the parent function to
+        // create a recursive loop.
+        atualiza_valores();
+        timeout();
+    }, 100);
+}
+
+function atualiza_valores() {
+    
+        try{
+        var x = "/values";
+        // console.log(x);
+        var xhttp = new XMLHttpRequest();
+        xhttp.open("GET", x, false);
+        xhttp.send();
+        resp = xhttp.responseText;
+        // console.log(resp);
+        document.getElementById("tabelaSensores").innerHTML =resp;
+        }
+        catch{
+            
+        }
+    }
+
+</script>
