@@ -12,15 +12,15 @@ class operacoesSD{
     */
     public:
     bool begin();
-    bool listDir(fs::FS &fs, const char * dirname, uint8_t levels);
-    bool createDir(fs::FS &fs, const char * path);
-    bool removeDir(fs::FS &fs, const char * path);
-    bool readFile(fs::FS &fs, const char * path);
-    bool writeFile(fs::FS &fs, const char * path, const char * message);
-    bool appendFile(fs::FS &fs, const char * path, const char * message);
-    bool renameFile(fs::FS &fs, const char * path1, const char * path2);
-    bool deleteFile(fs::FS &fs, const char * path);
-    bool testFileIO(fs::FS &fs, const char * path);
+    bool listDir( const char * dirname, uint8_t levels, fs::FS &fs = SD_MMC);
+    bool createDir(const char * path, fs::FS &fs = SD_MMC);
+    bool removeDir(const char * path, fs::FS &fs = SD_MMC);
+    bool readFile(const char * path, fs::FS &fs = SD_MMC);
+    bool writeFile(const char * path, const char * message, fs::FS &fs = SD_MMC);
+    bool appendFile(const char * path, const char * message, fs::FS &fs = SD_MMC);
+    bool renameFile(const char * path1, const char * path2, fs::FS &fs = SD_MMC);
+    bool deleteFile(const char * path, fs::FS &fs = SD_MMC);
+    bool testFileIO(const char * path, fs::FS &fs = SD_MMC);
 
     private:
 

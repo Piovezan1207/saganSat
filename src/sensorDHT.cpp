@@ -4,19 +4,40 @@
 
 // }
 
+sensorDHT::sensorDHT(uint8_t pin, uint8_t type, uint8_t count ) : DHT( pin,  type,  count ){
+
+}
+
 void sensorDHT::teste(){}
 
 //Leitura de todos os valores 
 bool sensorDHT::readSensor(float *values[3]){
 
-  float h = readHumidity();
+  float ah = DHT::readHumidity();
   // Read temperature as Celsius (the default)
-  float t = readTemperature();
+  float at = DHT::readTemperature();
   // Read temperature as Fahrenheit (isFahrenheit = true)
-  float f = readTemperature(true);
+  float af = DHT::readTemperature(true);
 
+     ah = 1;
+      at = 11;
+      af = 11;
+
+    float *h = &ah;
+    float *t = &at;
+    float *f = &af;
+
+    Serial.println(ah);
+    // Serial.printf("%f %f %f \n", &h,&t,&f);
+    
   // Check if any reads failed and exit early (to try again).
-  if (isnan(h) || isnan(t) || isnan(f)) {
+  if (isnan(ah) || isnan(at) || isnan(af)) {
+     
+    
+    memcpy(values + 0, &h, sizeof(h));
+    memcpy(values + 1, &t, sizeof(t));
+    memcpy(values + 2, &f, sizeof(f));
+
     return false;
   }
 

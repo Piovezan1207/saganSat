@@ -9,7 +9,7 @@ class sensorDHT : DHT
 {
 
     public:
-    sensorDHT(uint8_t pin, uint8_t type, uint8_t count = 6) : DHT( pin,  type,  count ){}
+    sensorDHT(uint8_t pin, uint8_t type, uint8_t count = 6);
     void teste();
     bool readSensor(float *values[3]); //Leitura de todos os valores 
     float heatIndex(bool automaticRead , bool scale, float temperature, float umidity); //Indicie de temperatura

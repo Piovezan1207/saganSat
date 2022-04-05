@@ -16,17 +16,20 @@ String GPS::getValue(){
   unsigned long chars;
   unsigned short sentences, failed;
 
-  // For one second we parse GPS data and report some key values
+  // // For one second we parse GPS data and report some key values
+    // String frase = "";
   for (unsigned long start = millis(); millis() - start < 1000;)
   {
     while (SoftwareSerial::available())
     {
       char c = SoftwareSerial::read();
-      // Serial.write(c); // uncomment this line if you want to see the GPS data flowing
+      Serial.write(c); // uncomment this line if you want to see the GPS data flowing
       if (TinyGPS::encode(c)) // Did a new valid sentence come in?
         newData = true;
+        // frase += c;
     }
   }
+    // Serial.println(frase);
 
   if (newData)
   {

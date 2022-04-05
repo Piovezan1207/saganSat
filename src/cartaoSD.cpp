@@ -10,7 +10,7 @@ bool operacoesSD::begin(){ //Inicialização do SD
     else return true;
 }
 
-bool operacoesSD::listDir(fs::FS &fs, const char * dirname, uint8_t levels){
+bool operacoesSD::listDir( const char * dirname, uint8_t levels, fs::FS &fs){
     Serial.printf(" Listando diretórios: %s\n", dirname);
 
     File root = fs.open(dirname);
@@ -29,7 +29,7 @@ bool operacoesSD::listDir(fs::FS &fs, const char * dirname, uint8_t levels){
             Serial.print("  DIR : ");
             Serial.println(file.name());
             if(levels){
-                listDir(fs, file.name(), levels -1);
+                listDir( file.name(), levels -1, fs);
             }
         } else {
             Serial.print("  FILE: ");
@@ -42,7 +42,7 @@ bool operacoesSD::listDir(fs::FS &fs, const char * dirname, uint8_t levels){
     return true;
 }
 
-bool operacoesSD::createDir(fs::FS &fs, const char * path){
+bool operacoesSD::createDir( const char * path, fs::FS &fs){
     Serial.printf("Criando diretório: %s\n", path);
     if(fs.mkdir(path)){
         Serial.println("Diretório criado");
@@ -53,7 +53,7 @@ bool operacoesSD::createDir(fs::FS &fs, const char * path){
     }
 }
 
-bool operacoesSD::removeDir(fs::FS &fs, const char * path){
+bool operacoesSD::removeDir( const char * path, fs::FS &fs){
     Serial.printf("Removendo diretório: %s\n", path);
     if(fs.rmdir(path)){
         Serial.println("Diretório removido");
@@ -64,7 +64,7 @@ bool operacoesSD::removeDir(fs::FS &fs, const char * path){
     }
 }
 
-bool operacoesSD::readFile(fs::FS &fs, const char * path){
+bool operacoesSD::readFile( const char * path, fs::FS &fs){
     Serial.printf("Lendo arquivo: %s\n", path);
 
     File file = fs.open(path);
@@ -80,7 +80,7 @@ bool operacoesSD::readFile(fs::FS &fs, const char * path){
     return true;
 }
 
-bool operacoesSD::writeFile(fs::FS &fs, const char * path, const char * message){
+bool operacoesSD::writeFile( const char * path, const char * message, fs::FS &fs){
     Serial.printf("Escrevendo no arquivo: %s\n", path);
 
     File file = fs.open(path, FILE_WRITE);
@@ -99,7 +99,7 @@ bool operacoesSD::writeFile(fs::FS &fs, const char * path, const char * message)
     return true;
 }
 
-bool operacoesSD::appendFile(fs::FS &fs, const char * path, const char * message){
+bool operacoesSD::appendFile( const char * path, const char * message, fs::FS &fs){
     Serial.printf("Adicionando ao arquivo: %s\n", path);
 
     File file = fs.open(path, FILE_APPEND);
@@ -116,7 +116,7 @@ bool operacoesSD::appendFile(fs::FS &fs, const char * path, const char * message
     }
 }
 
-bool operacoesSD::renameFile(fs::FS &fs, const char * path1, const char * path2){
+bool operacoesSD::renameFile( const char * path1, const char * path2, fs::FS &fs){
     Serial.printf("Renomeando arquivo %s para %s\n", path1, path2);
     if (fs.rename(path1, path2)) {
         Serial.println("Arquivo renomeado.");
@@ -127,7 +127,7 @@ bool operacoesSD::renameFile(fs::FS &fs, const char * path1, const char * path2)
     }
 }
 
-bool operacoesSD::deleteFile(fs::FS &fs, const char * path){
+bool operacoesSD::deleteFile( const char * path, fs::FS &fs){
     Serial.printf("Apagando arquivo: %s\n", path);
     if(fs.remove(path)){
         Serial.println("Arquivo apagado.");
@@ -138,7 +138,7 @@ bool operacoesSD::deleteFile(fs::FS &fs, const char * path){
     }
 }
 
-bool operacoesSD::testFileIO(fs::FS &fs, const char * path){
+bool operacoesSD::testFileIO( const char * path, fs::FS &fs){
     File file = fs.open(path);
     static uint8_t buf[512];
     size_t len = 0;
