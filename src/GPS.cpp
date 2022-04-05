@@ -1,6 +1,6 @@
 #include "GPS.h"
 
-GPS::GPS( int rx, int tx){
+GPS::GPS( int rx, int tx) : SoftwareSerial(rx, tx){
 }
 
 void GPS::teste(){

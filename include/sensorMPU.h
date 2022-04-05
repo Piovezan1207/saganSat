@@ -1,6 +1,3 @@
-#ifndef sensorMPU_H
-#define sensorMPU_H
-
 #include "Arduino.h"
 
 //Bibliotecas para o MPU6050
@@ -8,6 +5,8 @@
 #include <Adafruit_Sensor.h>
 #include <Wire.h>
 
+#ifndef sensorMPU_H
+#define sensorMPU_H
 
 class sensorMPU : Adafruit_MPU6050 {
 

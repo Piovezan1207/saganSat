@@ -1,7 +1,7 @@
 #include "sensorMPU.h"
 // Adafruit_MPU6050 mpu;
 
-bool sensorMPU::begin(int sda, int scl, int i2caddr = 0x68){
+bool sensorMPU::begin(int sda, int scl, int i2caddr ){
     Wire.begin(sda,scl);
     if (!Adafruit_MPU6050::begin(i2caddr)) 
     {
@@ -104,21 +104,21 @@ bool sensorMPU::readSensor(float *returnValues[7]){
     sensors_event_t a, g, temp;
     getEvent(&a, &g, &temp);
     
-    float temp = a.acceleration.x;
-    memcpy(returnValues + 0, &temp, sizeof(temp));
-    float temp = a.acceleration.y;
-    memcpy(returnValues + 1, &temp, sizeof(temp));
-    float temp = a.acceleration.z;
-    memcpy(returnValues + 2, &temp, sizeof(temp));
+    float temporary = a.acceleration.x;
+    memcpy(returnValues + 0, &temporary, sizeof(temporary));
+     temporary = a.acceleration.y;
+    memcpy(returnValues + 1, &temporary, sizeof(temporary));
+     temporary = a.acceleration.z;
+    memcpy(returnValues + 2, &temporary, sizeof(temporary));
     
-    float temp = g.gyro.x;
-    memcpy(returnValues + 3, &temp, sizeof(temp));
-    float temp = g.gyro.y;
-    memcpy(returnValues + 4, &temp, sizeof(temp));
-    float temp = g.gyro.z;
-    memcpy(returnValues + 5, &temp, sizeof(temp));
+     temporary = g.gyro.x;
+    memcpy(returnValues + 3, &temporary, sizeof(temporary));
+     temporary = g.gyro.y;
+    memcpy(returnValues + 4, &temporary, sizeof(temporary));
+     temporary = g.gyro.z;
+    memcpy(returnValues + 5, &temporary, sizeof(temporary));
 
-    float temp = temp.temperature;
-    memcpy(returnValues + 6 , &temp, sizeof(temp));
+     temporary = temp.temperature;
+    memcpy(returnValues + 6 , &temporary, sizeof(temporary));
 
 }

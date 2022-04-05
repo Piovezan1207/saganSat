@@ -1,12 +1,9 @@
-#ifndef sensorDHT_H
-#define sensorDHT_H
-
-#include "Arduino.h"
-
 //Biblioteca para o DHT
 #include "DHT.h"
+#include "Arduino.h"
 
-
+#ifndef sensorDHT_H
+#define sensorDHT_H
 
 class sensorDHT : DHT
 {

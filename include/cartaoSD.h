@@ -1,9 +1,9 @@
-#ifndef cartaoSD
-#define cartaoSD
-
 #include "Arduino.h"
 #include "FS.h" 
 #include "SD_MMC.h"
+
+#ifndef cartaoSD
+#define cartaoSD
 
 class operacoesSD{
 
