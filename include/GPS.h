@@ -7,15 +7,14 @@
 
 //Biblioteca para o DHT
 
-
-
-
 class GPS :TinyGPS , SoftwareSerial
 {
 
     public:
-        GPS(int serialVel , int rx, int tx) : SoftwareSerial(rx, tx){}
-
+        void teste();
+        GPS(int rx, int tx) : SoftwareSerial(rx, tx){}
+        bool begin(int serialVel){}
+        String getValue(){}
     private:
 
 };

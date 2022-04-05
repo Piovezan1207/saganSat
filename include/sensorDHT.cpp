@@ -1,6 +1,10 @@
 #include "sensorDHT.h"
 
+// sensorDHT::sensorDHT(uint8_t pin, uint8_t type, uint8_t count = 6){
 
+// }
+
+void sensorDHT::teste(){}
 
 //Leitura de todos os valores 
 bool sensorDHT::readSensor(float *values[3]){
