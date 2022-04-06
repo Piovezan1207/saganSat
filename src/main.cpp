@@ -1,18 +1,28 @@
 #include <Arduino.h>
 
-#include "GPS.h"
+//Bibliotecas WEBserver
+#include <WiFi.h>
+#include <WebServer.h>
+WebServer sv(80);
+
+const char* ssid= "Planta 4.0";                                             //Dados da sua rede Wi-Fi                                                
+const char* senha = "";
+
+//Classe para o cartão SD
 #include "cartaoSD.h"
-#include "sensorDHT.h"
-#include "sensorMPU.h"
 
 operacoesSD sd;
+
+//Classes dos sensores
+#include "sensorDHT.h"
+#include "sensorMPU.h"
 
 sensorDHT dht(16, DHT11);
 dhtvalues dht_values;
 
 sensorMPU mpu;
 mpuvalues mpu_values;
-// GPS gps(14,2);
+
 
 void setup(){
     Serial.begin(115200);
@@ -21,8 +31,15 @@ void setup(){
     mpu.begin(15,13, 0x68);
     
     sd.listDir("/", 0);
-    // gps.begin(9600);
+
+    mpu.setAccRange(8);
+    Serial.printf("\n%i G\n" ,mpu.readAccRange());
+
+    mpu.setGirRange(500);
+    Serial.printf("\n%i Deg\n", mpu.readGirRange());
   
+    delay(5000);
+
 }
 void loop(){
 // gps.getValue();
