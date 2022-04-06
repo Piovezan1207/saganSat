@@ -98,27 +98,21 @@ int sensorMPU::readFilterBandwidth(){
     default: return 100; break; //Se eu retornar false, será o mesmo que 0, nesse caso, o 100, será um "erro"
     }
 }
-bool sensorMPU::readSensor(float *returnValues[7]){
+bool sensorMPU::readSensor(mpuvalues *values){
 
 
     sensors_event_t a, g, temp;
     getEvent(&a, &g, &temp);
     
-    float temporary = a.acceleration.x;
-    memcpy(returnValues + 0, &temporary, sizeof(temporary));
-     temporary = a.acceleration.y;
-    memcpy(returnValues + 1, &temporary, sizeof(temporary));
-     temporary = a.acceleration.z;
-    memcpy(returnValues + 2, &temporary, sizeof(temporary));
-    
-     temporary = g.gyro.x;
-    memcpy(returnValues + 3, &temporary, sizeof(temporary));
-     temporary = g.gyro.y;
-    memcpy(returnValues + 4, &temporary, sizeof(temporary));
-     temporary = g.gyro.z;
-    memcpy(returnValues + 5, &temporary, sizeof(temporary));
+    values->acc[0] = a.acceleration.x;
+    values->acc[1] = a.acceleration.y;
+    values->acc[2] = a.acceleration.z;
 
-     temporary = temp.temperature;
-    memcpy(returnValues + 6 , &temporary, sizeof(temporary));
+    values->gir[0] = g.gyro.x;
+    values->gir[1] = g.gyro.y;
+    values->gir[2] = g.gyro.z;
+
+    values->temp = temp.temperature;
+
 
 }

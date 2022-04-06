@@ -8,6 +8,13 @@
 #ifndef sensorMPU_H
 #define sensorMPU_H
 
+typedef struct {
+  float acc[3]; 
+  float gir[3]; 
+  float temp; 
+
+} mpuvalues;
+
 class sensorMPU : Adafruit_MPU6050 {
 
     public:
@@ -18,7 +25,7 @@ class sensorMPU : Adafruit_MPU6050 {
     int readGirRange();
     bool setFilterBandwidth(int filterValue);
     int readFilterBandwidth();
-    bool readSensor(float *returnValues[7]);
+    bool readSensor(mpuvalues *values);
 
     private:
 
